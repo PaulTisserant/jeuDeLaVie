@@ -4,12 +4,12 @@ import scala.annotation.tailrec
 type Grille = List[(Int,Int)]
 
 
-/*
-val liste = List(" XX",
+
+val liste1 = List(" XX",
                  "  X",
                  "XXX")
 
- */
+
 
 val liste = List("  X  "," XXX ","XX XX"," XXX ","  X  ")
 
@@ -41,7 +41,7 @@ def chainesToGrille(l:List[String]) : Grille = {
   aux(l,0,0, Nil)
 }
 
-//assert(chainesToGrille(liste) == List((0,1), (0,2), (1,2), (2,0), (2,1), (2,2)))
+assert(chainesToGrille(liste1) == List((0,1), (0,2), (1,2), (2,0), (2,1), (2,2)))
 
 
 /** Question 2 */
@@ -127,6 +127,10 @@ def voisines8(l:Int, c:Int):List[(Int, Int)] = {
   (l+1,c)::(l-1,c)::(l,c+1)::(l,c-1)::(l+1,c+1)::(l-1,c-1)::(l+1,c-1)::(l-1,c+1)::Nil
 }
 
+assert(voisines8(1,1) == List((2,1), (0,1), (1,2), (1,0), (2,2), (0,0), (2,0), (0,2)))
+
+
+
 /** Question 4 */
 
 def survivantes(g:Grille):Grille = {
@@ -155,6 +159,7 @@ def survivantes(g:Grille):Grille = {
 }
 
 afficherGrille(survivantes(chainesToGrille(liste)))
+
 
 /** Question 5 */
 
@@ -335,6 +340,7 @@ def moteur(init: Grille, n:Int, voisines: (Int, Int)=>List[(Int, Int)] , nait: I
 
 /** Question 12 */
 
+moteur(chainesToGrille(liste), 4, voisines8, survieJDLV, naitJDLV)
 moteur(chainesToGrille(liste), 4, voisines4, survieFred, naitFred)
 
 /** Question 13 */
